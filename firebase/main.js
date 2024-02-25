@@ -18,7 +18,7 @@ const signUp=()=>{
     firebase.auth().createUserWithEmailAndPassword(email, password)
     .then((result) => {
         // Signed up material
-        document.write("You are Signed up")
+        location.replace('signedin.html')
         console.log(result)
         // ...
     })
@@ -40,7 +40,7 @@ const signIn = ()=>{
     firebase.auth().signInWithEmailAndPassword(email, password)
         .then((result) => {
             // Signed in material
-            document.write("You are Signed in")
+            location.replace('signedin.html')
             console.log(result)
             // ...
         })

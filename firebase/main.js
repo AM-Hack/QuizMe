@@ -18,7 +18,7 @@ const signUp=()=>{
     firebase.auth().createUserWithEmailAndPassword(email, password)
     .then((result) => {
         // Signed up material
-        location.replace('signedin.html')
+        location.replace('newsignup.html')
         console.log(result)
         // ...
     })

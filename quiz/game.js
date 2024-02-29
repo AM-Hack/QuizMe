@@ -1,146 +1,195 @@
 // require('dotenv').config();
 
-// import { OpenAI } from 'openai';
-// const openai = new OpenAI(); // no arguments are needed because this automatically accesses .env
+import { OpenAI } from 'openai';
+const openai = new OpenAI({apiKey : 'API-KEY-HERE'}); // no arguments are needed because this automatically accesses .env
+async function generateQuestionAndAnswers() { // AI generated question and answers!
 
-const question = document.querySelector('#question');
-const choices = Array.from(document.querySelectorAll('.choice-text'));
-const progressText = document.querySelector('#progressText');
-const scoreText = document.querySelector('#score');
-const progressBarFull = document.querySelector('#progressBarFull');
+    const question = await openai.chat.completions.create({
+        model: 'gpt-3.5-turbo',
+        messages: [
+            {
+                role: 'system', // this is basically background info for HOW the AI should respond
+                content: 'You are a chatbot made for quizzing students on topics they ask you for'
+            },
+            {
+                role: 'user', // this is where the user's prompt goes
+                content: 'Ask me a biology question about human kidneys. Do not add anything else to the response. Respond in one line.'
+            },
+        ],
+    });
+    const questionContent = question.choices[0].message.content;
 
+    const answers = await openai.chat.completions.create({
+        model: 'gpt-3.5-turbo',
+        messages: [
+            {
+                role: 'system', // this is basically background info for HOW the AI should respond
+                content: 'You are a chatbot made for quizzing students on topics they ask you for'
+            },
+            {
+                role: 'user', // this is where the user's prompt goes
+                content: 'Generate four possible answers to the question: '
+                    + questionContent
+                    + '. Only one answer should be right. Separate each answer with "@@@".'
+            },
+        ],
+    });
+    const answersContent = answers.choices[0].message.content;
 
-let currentQuestion = {}
-let acceptingAnswers = true
-let score = 0
-let questionCounter = 0
-let availableQuestions = []
+    return [questionContent, answersContent];
 
-// async function generateQuestionAndAnswers() { // AI generated question and answers!
+};
 
-//     const question = await openai.chat.completions.create({
-//         model: 'gpt-3.5-turbo',
-//         messages: [
-//             {
-//                 role: 'system', // this is basically background info for HOW the AI should respond
-//                 content: 'You are a chatbot made for quizzing students on topics they ask you for'
-//             },
-//             {
-//                 role: 'user', // this is where the user's prompt goes
-//                 content: 'Ask me a biology question about human kidneys'
-//             },
-//         ],
-//     });
-//     const questionContent = question.choices[0].message.content;
+const questionAndAnswers = await generateQuestionAndAnswers();
+const generatedQuestion = questionAndAnswers[0];
+const generatedAnswers = questionAndAnswers[1].split('@@@');
 
-//     const answers = await openai.chat.completions.create({
-//         model: 'gpt-3.5-turbo',
-//         messages: [
-//             {
-//                 role: 'system', // this is basically background info for HOW the AI should respond
-//                 content: 'You are a chatbot made for quizzing students on topics they ask you for'
-//             },
-//             {
-//                 role: 'user', // this is where the user's prompt goes
-//                 content: 'Generate four possible answers to the question: '
-//                     + questionContent
-//                     + '. Only one answer should be right. Separate each answer with "@@@".'
-//             },
-//         ],
-//     });
-//     const answersContent = answers.choices[0].message.content;
-
-//     return [questionContent, answersContent];
-
-// };
-
-// const questionAndAnswers = generateQuestionAndAnswers();
-// const aiQuestion = questionAndAnswers[0];
-// const aiAnswers = questionAndAnswers[1].split('@@@');
-let questions = [
-    {
-        question: 'What is 2+2?',
-        choice1: '2',
-        choice2: '4',
-        choice3: '21',
-        choice4: '17',
-        answer: 2,
-    },
-
-    {
-        question: 'What is 1+1?',
-        choice1: '2',
-        choice2: '4',
-        choice3: '21',
-        choice4: '17',
-        answer: 1,
-    }
-]
-
-
-const SCORE_POINTS = 100;
-const MAX_QUESTIONS = questions.length;
-
-startGame = () => {
-    questionCounter = 0
-    score = 0
-    availableQuestions = [...questions]
-    getNewQuestion()
-}
-
-getNewQuestion = () => {
-    if (availableQuestions.length === 0 || questionCounter > MAX_QUESTIONS) {
-        localStorage.setItem('mostRecentScore', score)
-
-        return window.location.assign('/quiz/end.html')
-    }
-
-    questionCounter++
-    progressText.innerText = `Question ${questionCounter} of ${MAX_QUESTIONS}`
-    progressBarFull.style.width = `${(questionCounter/MAX_QUESTIONS) * 100}%`
-
-    const questionsIndex = Math.floor(Math.random() * availableQuestions.length)
-    currentQuestion = availableQuestions[questionsIndex]
-    question.innerText = currentQuestion.question
-
-    choices.forEach(choice => {
-        const number = choice.dataset['number']
-        choice.innerText = currentQuestion['choice' + number]
-    })
-
-    availableQuestions.splice(questionsIndex, 1)
-
-    acceptingAnswers = true
+console.log(generatedQuestion);
+for (let i = 0; i < generatedAnswers.length; i++) {
+    console.log(generatedAnswers[i]);
 }
 
 
-choices.forEach(choice => {
-    choice.addEventListener('click', e=>{
-        if (!acceptingAnswers) return
 
-        acceptingAnswers = false
-        const selectedChoice = e.target
-        const selectedAnswer = selectedChoice.dataset['number']
 
-        let classToApply = selectedAnswer == currentQuestion.answer ? 'correct' : 'incorrect'
+// const question = document.querySelector('#question');
+// const choices = Array.from(document.querySelectorAll('.choice-text'));
+// const progressText = document.querySelector('#progressText');
+// const scoreText = document.querySelector('#score');
+// const progressBarFull = document.querySelector('#progressBarFull');
 
-        if(classToApply === 'correct'){
-            incrementScore(SCORE_POINTS)
-        }
 
-        selectedChoice.parentElement.classList.add(classToApply)
+// let currentQuestion = {}
+// let acceptingAnswers = true
+// let score = 0
+// let questionCounter = 0
+// let availableQuestions = []
 
-        setTimeout(() => {
-            selectedChoice.parentElement.classList.remove(classToApply)
-            getNewQuestion()
-        }, 1000)
-    })
-})
+// // async function generateQuestionAndAnswers() { // AI generated question and answers!
 
-incrementScore = num => {
-    score += num
-    scoreText.innerText = score
-}
+// //     const question = await openai.chat.completions.create({
+// //         model: 'gpt-3.5-turbo',
+// //         messages: [
+// //             {
+// //                 role: 'system', // this is basically background info for HOW the AI should respond
+// //                 content: 'You are a chatbot made for quizzing students on topics they ask you for'
+// //             },
+// //             {
+// //                 role: 'user', // this is where the user's prompt goes
+// //                 content: 'Ask me a biology question about human kidneys'
+// //             },
+// //         ],
+// //     });
+// //     const questionContent = question.choices[0].message.content;
 
-startGame()
+// //     const answers = await openai.chat.completions.create({
+// //         model: 'gpt-3.5-turbo',
+// //         messages: [
+// //             {
+// //                 role: 'system', // this is basically background info for HOW the AI should respond
+// //                 content: 'You are a chatbot made for quizzing students on topics they ask you for'
+// //             },
+// //             {
+// //                 role: 'user', // this is where the user's prompt goes
+// //                 content: 'Generate four possible answers to the question: '
+// //                     + questionContent
+// //                     + '. Only one answer should be right. Separate each answer with "@@@".'
+// //             },
+// //         ],
+// //     });
+// //     const answersContent = answers.choices[0].message.content;
+
+// //     return [questionContent, answersContent];
+
+// // };
+
+// // const questionAndAnswers = generateQuestionAndAnswers();
+// // const aiQuestion = questionAndAnswers[0];
+// // const aiAnswers = questionAndAnswers[1].split('@@@');
+// let questions = [
+//     {
+//         question: 'What is 2+2?',
+//         choice1: '2',
+//         choice2: '4',
+//         choice3: '21',
+//         choice4: '17',
+//         answer: 2,
+//     },
+
+//     {
+//         question: 'What is 1+1?',
+//         choice1: '2',
+//         choice2: '4',
+//         choice3: '21',
+//         choice4: '17',
+//         answer: 1,
+//     }
+// ]
+
+
+// const SCORE_POINTS = 100;
+// const MAX_QUESTIONS = questions.length;
+
+// startGame = () => {
+//     questionCounter = 0
+//     score = 0
+//     availableQuestions = [...questions]
+//     getNewQuestion()
+// }
+
+// getNewQuestion = () => {
+//     if (availableQuestions.length === 0 || questionCounter > MAX_QUESTIONS) {
+//         localStorage.setItem('mostRecentScore', score)
+
+//         return window.location.assign('/quiz/end.html')
+//     }
+
+//     questionCounter++
+//     progressText.innerText = `Question ${questionCounter} of ${MAX_QUESTIONS}`
+//     progressBarFull.style.width = `${(questionCounter/MAX_QUESTIONS) * 100}%`
+
+//     const questionsIndex = Math.floor(Math.random() * availableQuestions.length)
+//     currentQuestion = availableQuestions[questionsIndex]
+//     question.innerText = currentQuestion.question
+
+//     choices.forEach(choice => {
+//         const number = choice.dataset['number']
+//         choice.innerText = currentQuestion['choice' + number]
+//     })
+
+//     availableQuestions.splice(questionsIndex, 1)
+
+//     acceptingAnswers = true
+// }
+
+
+// choices.forEach(choice => {
+//     choice.addEventListener('click', e=>{
+//         if (!acceptingAnswers) return
+
+//         acceptingAnswers = false
+//         const selectedChoice = e.target
+//         const selectedAnswer = selectedChoice.dataset['number']
+
+//         let classToApply = selectedAnswer == currentQuestion.answer ? 'correct' : 'incorrect'
+
+//         if(classToApply === 'correct'){
+//             incrementScore(SCORE_POINTS)
+//         }
+
+//         selectedChoice.parentElement.classList.add(classToApply)
+
+//         setTimeout(() => {
+//             selectedChoice.parentElement.classList.remove(classToApply)
+//             getNewQuestion()
+//         }, 1000)
+//     })
+// })
+
+// incrementScore = num => {
+//     score += num
+//     scoreText.innerText = score
+// }
+
+// startGame()
 

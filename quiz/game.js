@@ -1,3 +1,8 @@
+// require('dotenv').config();
+
+// import { OpenAI } from 'openai';
+// const openai = new OpenAI(); // no arguments are needed because this automatically accesses .env
+
 const question = document.querySelector('#question');
 const choices = Array.from(document.querySelectorAll('.choice-text'));
 const progressText = document.querySelector('#progressText');
@@ -11,6 +16,47 @@ let score = 0
 let questionCounter = 0
 let availableQuestions = []
 
+// async function generateQuestionAndAnswers() { // AI generated question and answers!
+
+//     const question = await openai.chat.completions.create({
+//         model: 'gpt-3.5-turbo',
+//         messages: [
+//             {
+//                 role: 'system', // this is basically background info for HOW the AI should respond
+//                 content: 'You are a chatbot made for quizzing students on topics they ask you for'
+//             },
+//             {
+//                 role: 'user', // this is where the user's prompt goes
+//                 content: 'Ask me a biology question about human kidneys'
+//             },
+//         ],
+//     });
+//     const questionContent = question.choices[0].message.content;
+
+//     const answers = await openai.chat.completions.create({
+//         model: 'gpt-3.5-turbo',
+//         messages: [
+//             {
+//                 role: 'system', // this is basically background info for HOW the AI should respond
+//                 content: 'You are a chatbot made for quizzing students on topics they ask you for'
+//             },
+//             {
+//                 role: 'user', // this is where the user's prompt goes
+//                 content: 'Generate four possible answers to the question: '
+//                     + questionContent
+//                     + '. Only one answer should be right. Separate each answer with "@@@".'
+//             },
+//         ],
+//     });
+//     const answersContent = answers.choices[0].message.content;
+
+//     return [questionContent, answersContent];
+
+// };
+
+// const questionAndAnswers = generateQuestionAndAnswers();
+// const aiQuestion = questionAndAnswers[0];
+// const aiAnswers = questionAndAnswers[1].split('@@@');
 let questions = [
     {
         question: 'What is 2+2?',
@@ -31,8 +77,9 @@ let questions = [
     }
 ]
 
-const SCORE_POINTS = 100
-const MAX_QUESTIONS = 2
+
+const SCORE_POINTS = 100;
+const MAX_QUESTIONS = questions.length;
 
 startGame = () => {
     questionCounter = 0

@@ -2,18 +2,18 @@
 
 import { OpenAI } from 'openai';
 const openai = new OpenAI({apiKey : 'API-KEY-HERE'}); // no arguments are needed because this automatically accesses .env
-async function generateQuestionAndAnswers() { // AI generated question and answers!
+async function generateQuestionAndAnswers(prompt) { // AI generated question and answers!
 
     const question = await openai.chat.completions.create({
         model: 'gpt-3.5-turbo',
         messages: [
             {
                 role: 'system', // this is basically background info for HOW the AI should respond
-                content: 'You are a chatbot made for quizzing students on topics they ask you for'
+                content: 'You are a chatbot made for quizzing students on topics they ask you for that does not add anything else to the response and responds in one line.'
             },
             {
                 role: 'user', // this is where the user's prompt goes
-                content: 'Ask me a biology question about human kidneys. Do not add anything else to the response. Respond in one line.'
+                content: 'Ask me a quiz question about' + prompt,
             },
         ],
     });
@@ -24,7 +24,7 @@ async function generateQuestionAndAnswers() { // AI generated question and answe
         messages: [
             {
                 role: 'system', // this is basically background info for HOW the AI should respond
-                content: 'You are a chatbot made for quizzing students on topics they ask you for'
+                content: 'You are a chatbot made for quizzing students on topics they ask you for that does not add anything else to the response and responds in one line.'
             },
             {
                 role: 'user', // this is where the user's prompt goes
@@ -40,7 +40,7 @@ async function generateQuestionAndAnswers() { // AI generated question and answe
 
 };
 
-const questionAndAnswers = await generateQuestionAndAnswers();
+const questionAndAnswers = await generateQuestionAndAnswers('monkeys');
 const generatedQuestion = questionAndAnswers[0];
 const generatedAnswers = questionAndAnswers[1].split('@@@');
 

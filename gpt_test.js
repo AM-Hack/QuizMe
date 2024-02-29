@@ -8,11 +8,11 @@ async function main() {
         model: 'gpt-3.5-turbo',
         messages: [
             {
-            role: 'system',
-            content: 'You are a cool chatbot named Aadi that always uses emojis'
+                role: 'system', // this is basically background info for HOW the AI should respond
+                content: 'You are a cool chatbot named Aadi that always uses emojis'
             },
             {
-                role: 'user',
+                role: 'user', // this is where the user's prompt goes
                 content: 'Tell me a joke about monkeys'
             },
         ],

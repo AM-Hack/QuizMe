@@ -1,7 +1,8 @@
-// import 'dotenv';
-
+import dotenv from 'dotenv';
 import { OpenAI } from 'openai';
-const openai = new OpenAI({apiKey : 'API-KEY-HERE'}); // no arguments are needed because this automatically accesses .env
+
+dotenv.config({ path: '../.env' });
+const openai = new OpenAI({apiKey: process.env.OPENAI_API_KEY});
 
 async function main() {
     const response = await openai.chat.completions.create({

@@ -1,4 +1,3 @@
-import { topicInput } from './getTopic';
 import { OpenAI } from 'openai';
 
 const openai = new OpenAI({apiKey: import.meta.env.VITE_OPENAI_API_KEY, dangerouslyAllowBrowser: true});
@@ -6,47 +5,27 @@ const openai = new OpenAI({apiKey: import.meta.env.VITE_OPENAI_API_KEY, dangerou
 async function generateQuestionAndAnswers(prompt) {
 
     const question = await openai.chat.completions.create({
-        model: 'gpt-3.5-turbo',
+        model: 'gpt-4-0125-preview',
         messages: [
             {
                 role: 'system', // this is basically background info for HOW the AI should respond
-                content: 'You are a chatbot made for quizzing students on topics they ask you for that does not add anything else to the response and responds in one line.'
+                content: import.meta.env.VITE_SYSTEM_CONTENT
             },
             {
                 role: 'user', // this is where the user's prompt goes
-                content: 'Ask me a quiz question about' + prompt,
+                content: import.meta.env.VITE_QUESTION_PROMPT_ONE + prompt + import.meta.env.VITE_QUESTION_PROMPT_TWO
             },
         ],
     });
-    const questionContent = question.choices[0].message.content;
 
-    const answers = await openai.chat.completions.create({
-        model: 'gpt-3.5-turbo',
-        messages: [
-            {
-                role: 'system',
-                content: 'You are a chatbot made for quizzing students on topics they ask you for that does not add anything else to the response and responds in one line.'
-            },
-            {
-                role: 'user',
-                content: 'Generate four possible answers to the question: '
-                    + questionContent
-                    + '. Only one answer should be right. Separate each answer with "@@@".'
-            },
-        ],
-    });
-    const answersContent = answers.choices[0].message.content;
-
-    return [questionContent, answersContent];
+    return question.choices[0].message.content;
 
 };
 
-const questionAndAnswers = await generateQuestionAndAnswers(topicInput);
-const generatedQuestion = questionAndAnswers[0];
-const generatedAnswers = questionAndAnswers[1].split('@@@');
+const questionAndAnswers = (await generateQuestionAndAnswers('biology')).split('@@@');
 
-for (let i = 0; i < generatedAnswers.length; i++) {
-    console.log(generatedAnswers[i]);
+for (let i = 0; i < questionAndAnswers.length; i++) {
+    console.log(questionAndAnswers[i]);
 }
 
 
@@ -66,15 +45,14 @@ let acceptingAnswers = true
 let score = 0
 let questionCounter = 0
 let availableQuestions = []
-
 let questions = [
     {
-        question: generatedQuestion,
-        choice1: generatedAnswers[0],
-        choice2: generatedAnswers[1],
-        choice3: generatedAnswers[2],
-        choice4: generatedAnswers[3],
-        answer: 2,
+        question: questionAndAnswers[0].trim('?') + '?',
+        choice1: questionAndAnswers[1],
+        choice2: questionAndAnswers[2],
+        choice3: questionAndAnswers[3],
+        choice4: questionAndAnswers[4],
+        answer: parseInt(questionAndAnswers[5]),
     },
 
     {

@@ -1,5 +1,4 @@
 import { OpenAI } from 'openai';
-
 const openai = new OpenAI({apiKey: import.meta.env.VITE_OPENAI_API_KEY, dangerouslyAllowBrowser: true});
 
 async function generateQuestionAndAnswers(prompt) {
@@ -22,23 +21,13 @@ async function generateQuestionAndAnswers(prompt) {
 
 };
 
-const questionAndAnswers = (await generateQuestionAndAnswers('biology')).split('@@@');
-
-for (let i = 0; i < questionAndAnswers.length; i++) {
-    console.log(questionAndAnswers[i]);
-}
-
-
-
-
-
-
-
 const question = document.querySelector('#question');
 const choices = Array.from(document.querySelectorAll('.choice-text'));
 const progressText = document.querySelector('#progressText');
 const scoreText = document.querySelector('#score');
 const progressBarFull = document.querySelector('#progressBarFull');
+
+const questionAndAnswers = (await generateQuestionAndAnswers('chemistry')).split('@@@');
 
 let currentQuestion = {}
 let acceptingAnswers = true

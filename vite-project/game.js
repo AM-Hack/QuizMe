@@ -4,7 +4,7 @@ const openai = new OpenAI({apiKey: import.meta.env.VITE_OPENAI_API_KEY, dangerou
 async function generateQuestionAndAnswers(prompt, pastPrompts, isFirstPrompt) {
 
     const question = await openai.chat.completions.create({
-        model: 'gpt-4-0125-preview',
+        model: 'gpt-3.5-turbo',
         messages: [
             {
                 role: 'system', // this is basically background info for HOW the AI should respond

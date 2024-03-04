@@ -1,7 +1,7 @@
-import { OpenAI } from 'openai';
-const openai = new OpenAI({apiKey: import.meta.env.VITE_OPENAI_API_KEY, dangerouslyAllowBrowser: true});
+import { OpenAI } from 'openai'
+const openai = new OpenAI({apiKey: import.meta.env.VITE_OPENAI_API_KEY, dangerouslyAllowBrowser: true})
 
-async function generateQuestionAndAnswers(prompt) {
+async function generateQuestionAndAnswers(prompt, pastPrompts, isFirstPrompt) {
 
     const question = await openai.chat.completions.create({
         model: 'gpt-4-0125-preview',
@@ -12,14 +12,22 @@ async function generateQuestionAndAnswers(prompt) {
             },
             {
                 role: 'user', // this is where the user's prompt goes
-                content: import.meta.env.VITE_QUESTION_PROMPT_ONE + prompt + import.meta.env.VITE_QUESTION_PROMPT_TWO
+                content: isFirstPrompt
+                    ? import.meta.env.VITE_QUESTION_PROMPT_ONE
+                        + prompt
+                        + import.meta.env.VITE_QUESTION_PROMPT_TWO
+                    : import.meta.env.VITE_QUESTION_PROMPT_ONE
+                        + prompt
+                        + import.meta.env.VITE_QUESTION_PROMPT_TWO
+                        + import.meta.env.VITE_QUESTION_PROMPT_THREE 
+                        + pastPrompts
             },
         ],
-    });
+    })
 
-    return question.choices[0].message.content;
+    return question.choices[0].message.content
 
-};
+}
 
 const urlParams = new URLSearchParams(window.location.search);
 const selectedTopic = urlParams.get('topic');
@@ -29,30 +37,46 @@ const choices = Array.from(document.querySelectorAll('.choice-text'));
 const progressText = document.querySelector('#progressText');
 const scoreText = document.querySelector('#score');
 const progressBarFull = document.querySelector('#progressBarFull');
-const questionAndAnswers = (await generateQuestionAndAnswers(selectedTopic)).split('@@@');
+
 
 let currentQuestion = {}
 let acceptingAnswers = true
 let score = 0
 let questionCounter = 0
 let availableQuestions = []
+let previousPrompts = []
+//const questionAndAnswers = (await generateQuestionAndAnswers(selectedTopic)).split('@@@');
+
+let prompts = [
+    (await generateQuestionAndAnswers(selectedTopic, null, true)).split('@@@'),
+]
+
+for (let i = 0; i < 2; i++) { // loops with # of questions as i
+    let pastPrompts = ''
+    for (let j = 0; j < prompts.length; j++) {
+        pastPrompts += (JSON.stringify(j + 1) + '. ' + prompts[j][0] + ', ')
+    }
+    prompts.push((await generateQuestionAndAnswers(selectedTopic, pastPrompts, false)).split('@@@'))
+}
+
 let questions = [
     {
-        question: questionAndAnswers[0].trim('?') + '?',
-        choice1: questionAndAnswers[1],
-        choice2: questionAndAnswers[2],
-        choice3: questionAndAnswers[3],
-        choice4: questionAndAnswers[4],
-        answer: parseInt(questionAndAnswers[5]),
+        question: prompts[0][0].trim('?') + '?',
+        choice1: prompts[0][1],
+        choice2: prompts[0][2],
+        choice3: prompts[0][3],
+        choice4: prompts[0][4],
+        answer: parseInt(prompts[0][5]),
     },
 
     {
-        question: 'What is 1+1?',
-        choice1: '2',
-        choice2: '4',
-        choice3: '21',
-        choice4: '17',
-        answer: 1,
+        a: 'a',
+        question: prompts[1][0].trim('?') + '?',
+        choice1: prompts[1][1],
+        choice2: prompts[1][2],
+        choice3: prompts[1][3],
+        choice4: prompts[1][4],
+        answer: parseInt(prompts[1][5]),
     }
 ]
 

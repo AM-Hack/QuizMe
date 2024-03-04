@@ -31,6 +31,8 @@ async function generateQuestionAndAnswers(prompt, pastPrompts, isFirstPrompt) {
 
 const urlParams = new URLSearchParams(window.location.search);
 const selectedTopic = urlParams.get('topic');
+const numberofQuestions = parseInt(urlParams.get('num'))
+console.log(numberofQuestions)
 
 const question = document.querySelector('#question');
 const choices = Array.from(document.querySelectorAll('.choice-text'));
@@ -51,13 +53,17 @@ let prompts = [
     (await generateQuestionAndAnswers(selectedTopic, null, true)).split('@@@'),
 ]
 
-for (let i = 0; i < 2; i++) { // loops with # of questions as i
+
+
+for (let i = 0; i < numberofQuestions; i++) { // loops with # of questions as i
     let pastPrompts = ''
     for (let j = 0; j < prompts.length; j++) {
         pastPrompts += (JSON.stringify(j + 1) + '. ' + prompts[j][0] + ', ')
     }
     prompts.push((await generateQuestionAndAnswers(selectedTopic, pastPrompts, false)).split('@@@'))
 }
+
+
 
 let questions = [
     {
@@ -70,7 +76,6 @@ let questions = [
     },
 
     {
-        a: 'a',
         question: prompts[1][0].trim('?') + '?',
         choice1: prompts[1][1],
         choice2: prompts[1][2],

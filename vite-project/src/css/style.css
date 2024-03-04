@@ -110,7 +110,11 @@ input {
 input::placeholder {
     color: #aaa;
 }
-
+#qnum {
+    margin-bottom: 3rem;
+    width: 100%;
+    outline: none;
+}
 #topic {
     margin-bottom: 3rem;
     width: 100%;

@@ -21,13 +21,15 @@ async function generateQuestionAndAnswers(prompt) {
 
 };
 
+const urlParams = new URLSearchParams(window.location.search);
+const selectedTopic = urlParams.get('topic');
+
 const question = document.querySelector('#question');
 const choices = Array.from(document.querySelectorAll('.choice-text'));
 const progressText = document.querySelector('#progressText');
 const scoreText = document.querySelector('#score');
 const progressBarFull = document.querySelector('#progressBarFull');
-
-const questionAndAnswers = (await generateQuestionAndAnswers('chemistry')).split('@@@');
+const questionAndAnswers = (await generateQuestionAndAnswers(selectedTopic)).split('@@@');
 
 let currentQuestion = {}
 let acceptingAnswers = true
@@ -69,7 +71,7 @@ let getNewQuestion = () => {
     if (availableQuestions.length === 0 || questionCounter > MAX_QUESTIONS) {
         localStorage.setItem('mostRecentScore', score)
 
-        return window.location.assign('/quiz/end.html')
+        return window.location.assign('/src/html/end.html')
     }
 
     questionCounter++

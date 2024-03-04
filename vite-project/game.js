@@ -47,43 +47,31 @@ let score = 0
 let questionCounter = 0
 let availableQuestions = []
 let previousPrompts = []
-//const questionAndAnswers = (await generateQuestionAndAnswers(selectedTopic)).split('@@@');
+let questions = []
 
 let prompts = [
     (await generateQuestionAndAnswers(selectedTopic, null, true)).split('@@@'),
 ]
 
-
-
-for (let i = 0; i < numberofQuestions; i++) { // loops with # of questions as i
+for (let questionNum = 0; questionNum < numberofQuestions - 1; questionNum++) {
     let pastPrompts = ''
-    for (let j = 0; j < prompts.length; j++) {
-        pastPrompts += (JSON.stringify(j + 1) + '. ' + prompts[j][0] + ', ')
+    for (let i = 0; i < prompts.length; i++) {
+        pastPrompts += (JSON.stringify(i + 1) + '. ' + prompts[i][0] + ', ')
     }
     prompts.push((await generateQuestionAndAnswers(selectedTopic, pastPrompts, false)).split('@@@'))
 }
 
-
-
-let questions = [
-    {
-        question: prompts[0][0].trim('?') + '?',
-        choice1: prompts[0][1],
-        choice2: prompts[0][2],
-        choice3: prompts[0][3],
-        choice4: prompts[0][4],
-        answer: parseInt(prompts[0][5]),
-    },
-
-    {
-        question: prompts[1][0].trim('?') + '?',
-        choice1: prompts[1][1],
-        choice2: prompts[1][2],
-        choice3: prompts[1][3],
-        choice4: prompts[1][4],
-        answer: parseInt(prompts[1][5]),
-    }
-]
+for (let i = 0; i < prompts.length; i++) {
+    const currentPrompt = prompts[i]
+    questions.push({
+        question: currentPrompt[0].trim('?') + '?',
+        choice1: currentPrompt[1],
+        choice2: currentPrompt[2],
+        choice3: currentPrompt[3],
+        choice4: currentPrompt[4],
+        answer: parseInt(currentPrompt[5]),
+    })
+}
 
 
 const SCORE_POINTS = 100;

@@ -1,95 +1,91 @@
 import { OpenAI } from 'openai'
 const openai = new OpenAI({apiKey: import.meta.env.VITE_OPENAI_API_KEY, dangerouslyAllowBrowser: true})
 
-async function generateQuestionAndAnswers(selectedTopic, past, isFirstPrompt) {
+async function generateQuestionAndAnswers(selectedTopic, pastGeneratedResponse, isFirstGeneratedResponse) {
 
-    const question = await openai.chat.completions.create({
+    const generatedQuestion = await openai.chat.completions.create({
         model: 'gpt-3.5-turbo',
         messages: [
             {
                 role: 'system', // this is basically background info for HOW the AI should respond
-                content: import.meta.env.VITE_SYSTEM_CONTENT
+                content: import.meta.env.VITE_AI_SYSTEM_CONTENT
             },
             {
                 role: 'user', // this is where the user's prompt goes
-                content: isFirstPrompt
-                    ? import.meta.env.VITE_QUESTION_PROMPT_ONE
+                content: isFirstGeneratedResponse
+                    ? import.meta.env.VITE_AI_USER_CONTENT_ONE
                         + selectedTopic
-                    : import.meta.env.VITE_QUESTION_PROMPT_ONE
+                    : import.meta.env.VITE_AI_USER_CONTENT_ONE
                         + selectedTopic
-                        + import.meta.env.VITE_QUESTION_PROMPT_FOUR
-                        + pastPrompts
+                        + import.meta.env.VITE_AI_USER_CONTENT_TWO
+                        + pastGeneratedResponse
             }
         ]
     })
-    const questionContent = question.choices[0].message.content
+    const generatedQuestionContent = generatedQuestion.choices[0].message.content
 
-    const answers = await openai.chat.completions.create({
+    const generatedAnswers = await openai.chat.completions.create({
         model: 'gpt-3.5-turbo',
         messages: [
             {
                 role: 'system',
-                content: import.meta.env.VITE_SYSTEM_CONTENT
+                content: import.meta.env.VITE_AI_SYSTEM_CONTENT
             },
             {
                 role: 'user',
-                content: import.meta.env.VITE_QUESTION_PROMPT_TWO
-                    + questionContent
-                    + import.meta.env.VITE_QUESTION_PROMPT_THREE
+                content: import.meta.env.VITE_AI_USER_CONTENT_THREE
+                    + generatedQuestionContent
+                    + import.meta.env.VITE_AI_USER_CONTENT_FOUR
             }
         ]
     })
-    const answerContent = answers.choices[0].message.content
+    const generatedAnswersContent = generatedAnswers.choices[0].message.content
 
-    console.log(questionContent + answerContent)
-    return questionContent + answerContent
+    return generatedQuestionContent + generatedAnswersContent
 
 }
 
 const urlParams = new URLSearchParams(window.location.search);
 const selectedTopic = urlParams.get('topic');
 const numberofQuestions = parseInt(urlParams.get('num'))
-console.log(numberofQuestions)
-
 const question = document.querySelector('#question');
 const choices = Array.from(document.querySelectorAll('.choice-text'));
 const progressText = document.querySelector('#progressText');
 const scoreText = document.querySelector('#score');
 const progressBarFull = document.querySelector('#progressBarFull');
 
-
 let currentQuestion = {}
 let acceptingAnswers = true
 let score = 0
 let questionCounter = 0
 let availableQuestions = []
-let previousPrompts = []
 
-const firstPrompt = (await generateQuestionAndAnswers(selectedTopic, null, true)).split('@@')
+const firstGeneratedResponse = (await generateQuestionAndAnswers(selectedTopic, null, true)).split('@@')
+
 let questions = [
     {
-        question: firstPrompt[0],
-        choice1: firstPrompt[1],
-        choice2: firstPrompt[2],
-        choice3: firstPrompt[3],
-        choice4: firstPrompt[4],
-        answer:parseInt(firstPrompt[5])
+        question: firstGeneratedResponse[0],
+        choice1: firstGeneratedResponse[1],
+        choice2: firstGeneratedResponse[2],
+        choice3: firstGeneratedResponse[3],
+        choice4: firstGeneratedResponse[4],
+        answer:parseInt(firstGeneratedResponse[5])
     },
 ]
 
 for (let questionNum = 0; questionNum < numberofQuestions - 1; questionNum++) {
-    let pastPrompts = ''
-    for (let i = 0; i < questions.length; i++) {
-        pastPrompts += (JSON.stringify(i + 1) + '. ' + questions[i][0] + ', ')
+    let pastGeneratedResponses = ''
+    for (let index = 0; index < questions.length; index++) {
+        pastGeneratedResponses += (JSON.stringify(index + 1) + '. ' + questions[index][0] + ', ')
     }
-    const newPrompt = (await generateQuestionAndAnswers(selectedTopic, pastPrompts, false)).split('@@')
+    const newGeneratedResponse = (await generateQuestionAndAnswers(selectedTopic, pastGeneratedResponses, false)).split('@@')
     questions.push({
-        question: newPrompt[0],
-        choice1: newPrompt[1],
-        choice2: newPrompt[2],
-        choice3: newPrompt[3],
-        choice4: newPrompt[4],
-        answer:parseInt(newPrompt[5])
+        question: newGeneratedResponse[0],
+        choice1: newGeneratedResponse[1],
+        choice2: newGeneratedResponse[2],
+        choice3: newGeneratedResponse[3],
+        choice4: newGeneratedResponse[4],
+        answer:parseInt(newGeneratedResponse[5])
     })
 }
 

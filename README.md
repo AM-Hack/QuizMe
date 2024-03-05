@@ -14,5 +14,5 @@ npm run dev
 Add demo gif here
 
 ## Contact 👨‍💻
-Mihir: https://discordapp.com/users/693514463093063780
+Mihir: https://discordapp.com/users/693514463093063780 <br>
 Aadi: https://discordapp.com/users/779065933029310474

@@ -49,11 +49,11 @@ const urlParams = new URLSearchParams(window.location.search);
 const selectedTopic = urlParams.get('topic');
 const numberofQuestions = parseInt(urlParams.get('num'))
 const question = document.querySelector('#question');
-const choices = Array.from(document.querySelectorAll('.choice-text'));
-const progressText = document.querySelector('#progressText');
-const scoreText = document.querySelector('#score');
-const progressBarFull = document.querySelector('#progressBarFull');
-
+const choices = Array.from(document.querySelectorAll('.choice-text'))
+const feedback = Array.from(document.querySelectorAll('#feedback'))
+const progressText = document.querySelector('#progressText')
+const scoreText = document.querySelector('#score')
+const progressBarFull = document.querySelector('#progressBarFull')
 let currentQuestion = {}
 let acceptingAnswers = true
 let score = 0
@@ -137,6 +137,9 @@ choices.forEach(choice => {
 
         if(classToApply === 'correct'){
             incrementScore(SCORE_POINTS)
+            feedback.innerText = 'Nice!'
+        } else {
+            feedback.innerText = 'The correct answer was: '
         }
 
         selectedChoice.parentElement.classList.add(classToApply)

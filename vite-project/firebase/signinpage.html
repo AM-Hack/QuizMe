@@ -11,30 +11,16 @@
 
 </head>
 <body>
-    <div class="form">
-        <div class="email">
-            <label for="email">Email</label>
-            <input type="email"
-            name="email"
-            id="email"
-            placeholder="Email">
+    <div class="container">
+        <div id="home" class="flex-column flex-center">
+            <h1>Welcome!</h1>
+            <h2 id="end-text">Enter Login Credentials</h2>
+            <input type="text" name="email" id="email" placeholder="Enter Email">
+            <input type="password" name="pwd" id="pwd" placeholder="Enter Password">
+            <button class="btn" id="signUpButton" type="submit" onclick="signIn()" disabled>Sign In</button>
+            <p>Don't Have an Account? <span><a href="index.html">Sign Up</a></span> </p>
         </div>
-        <div class="pass">
-            <label for="password">Password</label>
-            <input type="password"
-            name="password"
-            id="password"
-            placeholder="Password">
-        </div>
-        <button id="submit-btn" onclick="signIn()">Sign In</button>
-        <p>Don't have an account?</p>
-        <span><a href="index.html">Sign Up</a></span>
     </div>
-
-
-
-
-
     <script src="main.js"></script>
 </body>
 </html>

@@ -29,6 +29,21 @@ body {
     width: 100%;
 }
 
+.feedback {
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+    text-align: center;
+    color: green; /* Change color as desired */
+  }
+  
+  .feedback.correct { /* Add styling for correct answer */
+    opacity: 1;
+  }
+
+  .feedback.incorrect {
+    opacity: 1;
+  }
+
 .correct {
     background: linear-gradient(32deg, rgba(11, 223, 36) 0%, rgba(41, 232, 111) 100%);
 }

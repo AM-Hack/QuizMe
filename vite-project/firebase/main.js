@@ -13,7 +13,7 @@ const auth = firebaseApp.auth();
 //sign up function
 const signUp=()=>{
     const email = document.getElementById("email").value;
-    const password = document.getElementById("password").value;
+    const password = document.getElementById("pwd").value;
     console.log(email, password)
     firebase.auth().createUserWithEmailAndPassword(email, password)
     .then((result) => {
@@ -36,7 +36,7 @@ const signUp=()=>{
 //sign in function
 const signIn = ()=>{
     const email = document.getElementById("email").value;
-    const password = document.getElementById("password").value;
+    const password = document.getElementById("pwd").value;
     firebase.auth().signInWithEmailAndPassword(email, password)
         .then((result) => {
             // Signed in material

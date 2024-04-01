@@ -53,7 +53,6 @@ const choices = Array.from(document.querySelectorAll('.choice-text'));
 const progressText = document.querySelector('#progressText');
 const scoreText = document.querySelector('#score');
 const progressBarFull = document.querySelector('#progressBarFull');
-const feedbackElement = document.getElementById('feedback');
 
 let currentQuestion = {}
 let acceptingAnswers = true
@@ -138,13 +137,6 @@ choices.forEach(choice => {
 
         if(classToApply === 'correct'){
             incrementScore(SCORE_POINTS)
-            feedbackElement.innerText = "Correct! Nice Job!"
-            feedbackElement.classList.add('correct');
-        }
-
-        else if (classToApply === 'incorrect'){
-            feedbackElement.innerText = "Unfortunate!"
-            feedbackElement.classList.add('incorrect');
         }
 
         selectedChoice.parentElement.classList.add(classToApply)

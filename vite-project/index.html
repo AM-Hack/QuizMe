@@ -5,14 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home Page</title>
     <link rel="stylesheet" href="src/css/style.css">
+    <link rel="icon" type="image/x-icon" href="/Favicon.ico">
 </head>
 <body>
     <div class="container">
         <div id="home" class="flex-column flex-center">
             <h1>Are you ready?</h1>
-            <h2 id="end-text">Enter a Topic to Test</h2>
-            <input type="text" name="topic" id="topic" placeholder="Enter Topic">
-            <input type="text" name="qnum" id="qnum" placeholder="Enter Desired Number of Questions">
+            <h2 id="end-text">Enter a topic to be quizzed on!</h2>
+            <input type="text" name="topic" id="topic" placeholder="Enter your topic">
+            <input type="text" name="qnum" id="qnum" placeholder="Enter a number of questions">
             <button class="btn" id="playButton" type="submit" onclick="SaveAndChange()" disabled>Play</button>
         </div>
     </div>

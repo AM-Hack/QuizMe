@@ -143,7 +143,6 @@ choices.forEach(choice => {
 
         setTimeout(() => {
             selectedChoice.parentElement.classList.remove(classToApply)
-            feedbackElement.classList.remove('correct', 'incorrect')
             getNewQuestion()
         }, 1000)
     })

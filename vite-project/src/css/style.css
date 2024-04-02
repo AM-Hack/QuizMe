@@ -14,10 +14,6 @@
     font-family: 'Quicksand', cursive;
     
 }
-
-
-
-
 .navigation {
     display:inline-flex;
     width:95%;
@@ -43,9 +39,12 @@
   margin-right:auto;
   font-weight:bold;
 }
-.navigation span{
+.navigation span.quiz{
     color:white;
-    font-family:"Righteous";
+    font-size:40px;
+}
+.navigation span.me{
+    color:rgb(69,129,142);
     font-size:40px;
 }
 .navigation .contabt{
@@ -89,7 +88,6 @@ h2 {
     max-width: 80rem;
     margin: 0 auto;
     padding: 2rem;
-
 }
 
 .flex-column {

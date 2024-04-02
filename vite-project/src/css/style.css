@@ -121,7 +121,6 @@ h2 {
     text-decoration: none;
     color: rgb(69,129,142);
     background: rgb(28, 26, 26);
-    /* background-image:url("../../public/wallpaper.png"); */
     border-radius: 15px;
     border:none;
     transition: transform .2s;
@@ -130,8 +129,6 @@ h2 {
 
 .btn:hover {
     cursor: pointer;
-    /* box-shadow: 0 0.4rem 1.4rem 0 rgba(12,52,61, 0.6);
-    transition: transform 150ms; */
     transform: scale(1.05);
 }
 
@@ -169,16 +166,13 @@ input {
 input::placeholder {
     color: #aaa;
 }
-#qnum {
+#qnum, #topic {
     margin-bottom: 3rem;
     width: 100%;
     outline: none;
+    border-radius: 15px;
 }
-#topic {
-    margin-bottom: 3rem;
-    width: 100%;
-    outline: none;
-}
+
 #username {
     margin-bottom: 3rem;
     width: 100%;

@@ -2,8 +2,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Quicksand&display=swap');
 
 :root {
-    background-color: rgb(29,29,26);
-    background-image: url('../../public/wallpaper.png');
+    background-color:rgb(69,129,142);
+    
 }
 
 * {
@@ -14,6 +14,60 @@
     font-family: 'Quicksand', cursive;
     
 }
+
+
+
+
+.navigation {
+    display:inline-flex;
+    width:95%;
+    overflow: hidden;
+    border-radius:35px;
+    transition: transform .2s;
+    margin:20px;
+    background-color: rgb(28, 26, 26);
+    /* background-image:url("../../public/wallpaper.png"); */
+    background-size:500px;
+    justify-content: center;
+  }
+.navigation:hover{
+  transform: scale(1.02);
+}
+.navigation .logo{
+  float: left;
+  font-family:"Righteous", "Quicksand";
+  color:rgb(69,129,142);
+  font-size:40px;
+  text-align:center;
+  text-decoration:none;
+  margin-right:auto;
+  font-weight:bold;
+}
+.navigation span{
+    color:white;
+    font-family:"Righteous";
+    font-size:40px;
+}
+.navigation .contabt{
+  font-family:"Quicksand";
+  float:right;
+  margin-top:auto;
+  margin-bottom:auto;
+}
+
+.navigation a {
+  float: right;
+  color: white;
+  text-align: center;
+  padding: 30px 30px;
+  text-decoration: none;
+  font-size: 17px;
+}
+.navigation a:hover {
+  color:rgb(69,129,142);
+}
+
+
 
 h1 {
     font-size: 5.4rem;
@@ -28,7 +82,7 @@ h2 {
 
 .container {
     width: 100vw;
-    height: 100vh;
+    height: 70vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -67,16 +121,20 @@ h2 {
     text-align: center;
     margin-bottom: 1rem;
     text-decoration: none;
-    color: rgb(28, 26, 26);
-    background: rgb(69,129,142);
-    border-radius: 4px;
+    color: rgb(69,129,142);
+    background: rgb(28, 26, 26);
+    /* background-image:url("../../public/wallpaper.png"); */
+    border-radius: 15px;
+    border:none;
+    transition: transform .2s;
+    
 }
 
 .btn:hover {
     cursor: pointer;
-    box-shadow: 0 0.4rem 1.4rem 0 rgba(12,52,61, 0.6);
-    transition: transform 150ms;
-    transform: scale(1.03);
+    /* box-shadow: 0 0.4rem 1.4rem 0 rgba(12,52,61, 0.6);
+    transition: transform 150ms; */
+    transform: scale(1.05);
 }
 
 .btn[disabled]:hover {

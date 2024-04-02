@@ -2,7 +2,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Quicksand&display=swap');
 
 :root {
-    background-color:rgb(69,129,142);
+    --main-purple:rgb(69,129,142);
+    background-color:var(--main-purple);
+    
     
 }
 
@@ -12,6 +14,7 @@
     padding: 0;
     font-size: 62.5%;
     font-family: 'Quicksand', cursive;
+    
     
 }
 .navigation {
@@ -32,7 +35,7 @@
 .navigation .logo{
   float: left;
   font-family:"Righteous", "Quicksand";
-  color:rgb(69,129,142);
+  color:var(--main-purple);
   font-size:40px;
   text-align:center;
   text-decoration:none;
@@ -44,7 +47,7 @@
     font-size:40px;
 }
 .navigation span.me{
-    color:rgb(69,129,142);
+    color:var(--main-purple);
     font-size:40px;
 }
 .navigation .contabt{
@@ -63,7 +66,7 @@
   font-size: 17px;
 }
 .navigation a:hover {
-  color:rgb(69,129,142);
+  color:var(--main-purple);
 }
 
 
@@ -119,7 +122,7 @@ h2 {
     text-align: center;
     margin-bottom: 1rem;
     text-decoration: none;
-    color: rgb(69,129,142);
+    color: var(--main-purple);
     background: rgb(28, 26, 26);
     border-radius: 15px;
     border:none;

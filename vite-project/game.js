@@ -159,12 +159,14 @@ startGame()
 var icon = document.getElementById("icon");
 icon.onclick = function(){
     console.log("clicked")
-    document.body.classList.toggle("dark-theme"); /* change all color things here. find the dark theme part in style.css*/
+    document.body.classList.toggle("dark-theme") /* change all color things here. find the dark theme part in style.css*/
     if (document.body.classList.contains("dark-theme")){
         icon.src = "/src/images/light-mode.png"
     }
     else {
+        document.body.classList.toggle("dark-theme")
+        document.body.classList.toggle("light-theme")
         icon.src = "/src/images/night-mode.png"
+        
     }
-
 }

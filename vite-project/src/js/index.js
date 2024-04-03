@@ -5,7 +5,11 @@ const num = document.querySelector('#qnum')
 function SaveAndChange() {
     const topicValue = topic.value
     const numQ = num.value
-    location.replace(`/game.html?topic=${topicValue}&num=${numQ}`)
+    if (/^\d+$/.test(numQ)) { // check if numQ is a number
+        location.replace(`/game.html?topic=${topicValue}&num=${numQ}`)
+    } else {
+        alert("Please enter a valid number!")
+    }
 }
 
 topic.addEventListener('keyup', () => {

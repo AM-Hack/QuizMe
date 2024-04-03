@@ -8,6 +8,11 @@
     
 }
 
+.dark-theme{
+    /*empty for now*/
+    color: white;
+}
+
 * {
     box-sizing: border-box;
     margin: 0;
@@ -18,20 +23,20 @@
     
 }
 .navigation {
-    display:inline-flex;
+    display:flex;
+    align-items: center;
     width:95%;
     overflow: hidden;
     border-radius:35px;
     transition: transform .2s;
     margin:20px;
-    background-color: rgb(28, 26, 26);
+    
     /* background-image:url("../../public/wallpaper.png"); */
     background-size:500px;
-    justify-content: center;
+    justify-content: space-between;
   }
-.navigation:hover{
-  transform: scale(1.02);
-}
+
+
 .navigation .logo{
   float: left;
   font-family:"Righteous", "Quicksand";
@@ -39,16 +44,15 @@
   font-size:40px;
   text-align:center;
   text-decoration:none;
-  margin-right:auto;
   font-weight:bold;
 }
 .navigation span.quiz{
     color:white;
-    font-size:40px;
+    font-size:30px;
 }
 .navigation span.me{
-    color:var(--main-color);
-    font-size:40px;
+    color:rgb(0,0,142);
+    font-size:30px;
 }
 .navigation .contabt{
   font-family:"Quicksand";
@@ -61,14 +65,22 @@
   float: right;
   color: white;
   text-align: center;
-  padding: 30px 30px;
   text-decoration: none;
   font-size: 17px;
 }
 .navigation a:hover {
-  color:var(--main-color);
+  color:rgb(0,0,142);
 }
 
+img {
+    cursor: pointer;
+}
+
+.navigation .rightside {
+    display: flex;
+    justify-content:space-between;
+    gap: 25px;
+}
 
 
 h1 {

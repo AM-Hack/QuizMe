@@ -10,7 +10,7 @@
 
 .dark-theme{
     /*empty for now*/
-    color: white;
+    background-color: white;
 }
 
 * {
@@ -25,7 +25,6 @@
 .navigation {
     display:flex;
     align-items: center;
-    width:95%;
     overflow: hidden;
     border-radius:35px;
     transition: transform .2s;
@@ -34,6 +33,7 @@
     /* background-image:url("../../public/wallpaper.png"); */
     background-size:500px;
     justify-content: space-between;
+    padding-bottom: 30px;
   }
 
 

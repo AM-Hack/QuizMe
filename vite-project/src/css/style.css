@@ -1,16 +1,20 @@
-@import url('https://fonts.googleapis.com/css2?family=Nova+Square&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Righteous&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Quicksand&display=swap');
 
-:root {
-    --main-color:rgb(69,129,142);
-    background-color:var(--main-color);
-    
-    
+:root .dark-theme{
+    --first-color:#002a2a;
+    --second-color:#000000;
+    --third-color:#ffffff;
+    --fourth-color:#ffffff;
+    background-color: var(--first-color);
 }
 
-.dark-theme{
-    /*empty for now*/
-    background-color: white;
+:root .light-theme {
+    --first-color:#45818e;
+    --second-color:#ffffff;
+    --third-color:#000000;
+    --fourth-color:#45818e;
+    background-color: var(--first-color);
 }
 
 * {
@@ -21,38 +25,48 @@
     font-family: 'Quicksand', cursive;
     
     
+    
+    
 }
 .navigation {
     display:flex;
     align-items: center;
+    font-family:"Righteous", "Quicksand";
     overflow: hidden;
     border-radius:35px;
     transition: transform .2s;
     margin:20px;
-    
-    /* background-image:url("../../public/wallpaper.png"); */
+    background-color:var(--second-color);
     background-size:500px;
     justify-content: space-between;
-    padding-bottom: 30px;
+    padding: 30px;
   }
 
 
 .navigation .logo{
   float: left;
-  font-family:"Righteous", "Quicksand";
-  color:var(--main-color);
   font-size:40px;
   text-align:center;
   text-decoration:none;
+  margin-right:auto;
   font-weight:bold;
 }
+.navigation:hover{
+    transform: scale(1.02);
+  }
 .navigation span.quiz{
-    color:white;
+    color:var(--third-color);
     font-size:30px;
+    font-family:"Righteous";
+    font-size:40px;
+    font-weight:bold;
 }
 .navigation span.me{
-    color:rgb(0,0,142);
+    color:var(--first-color);
     font-size:30px;
+    font-family:"Righteous";
+    font-size:40px;
+    font-weight:bold;
 }
 .navigation .contabt{
   font-family:"Quicksand";
@@ -63,13 +77,13 @@
 
 .navigation a {
   float: right;
-  color: white;
+  color:var(--third-color);
   text-align: center;
   text-decoration: none;
   font-size: 17px;
 }
 .navigation a:hover {
-  color:rgb(0,0,142);
+  color:var(--first-color);
 }
 
 img {
@@ -134,8 +148,8 @@ h2 {
     text-align: center;
     margin-bottom: 1rem;
     text-decoration: none;
-    color: var(--main-color);
-    background: rgb(28, 26, 26);
+    color: var(--fourth-color);
+    background: var(--second-color);
     border-radius: 15px;
     border:none;
     transition: transform .2s;

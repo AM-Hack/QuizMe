@@ -8,16 +8,16 @@ async function generateQuestionAndAnswers(selectedTopic, pastGeneratedResponse, 
         messages: [
             {
                 role: 'system', // this is basically background info for HOW the AI should respond
-                content: import.meta.env.VITE_AI_SYSTEM_CONTENT
+                content: 'You are a chatbot made for quizzing students on topics they ask you for. You respond in only one line'
             },
             {
                 role: 'user', // this is where the user's prompt goes
                 content: isFirstGeneratedResponse
-                    ? import.meta.env.VITE_AI_USER_CONTENT_ONE
+                    ? 'Ask me a very difficult quiz question (do not include any unnecessary words in response) about '
                         + selectedTopic
-                    : import.meta.env.VITE_AI_USER_CONTENT_ONE
+                    : 'Ask me a very difficult quiz question (do not include any unnecessary words in response) about '
                         + selectedTopic
-                        + import.meta.env.VITE_AI_USER_CONTENT_TWO
+                        + '. Please do not generate any questions that are in this list: '
                         + pastGeneratedResponse
             }
         ]
@@ -29,13 +29,13 @@ async function generateQuestionAndAnswers(selectedTopic, pastGeneratedResponse, 
         messages: [
             {
                 role: 'system',
-                content: import.meta.env.VITE_AI_SYSTEM_CONTENT
+                content: 'You are a chatbot made for quizzing students on topics they ask you for. You respond in only one line'
             },
             {
                 role: 'user',
-                content: import.meta.env.VITE_AI_USER_CONTENT_THREE
+                content: 'Generate four multiple choice answers for this question: '
                     + generatedQuestionContent
-                    + import.meta.env.VITE_AI_USER_CONTENT_FOUR
+                    + 'Respond in this form: @@[answer_1]@@[answer2]@@[answer_3]@@[answer_4]@@[correct_answer_number]. Make sure only one answer is correct. Do NOT add any punctuation or extra characters or numbers to the responses'
             }
         ]
     })

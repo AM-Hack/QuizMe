@@ -205,7 +205,7 @@ input {
 }
 
 input::placeholder {
-    color: #aaa;
+    color: #777;
 }
 #qnum, #topic {
     margin-bottom: 3rem;

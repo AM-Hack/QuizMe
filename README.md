@@ -12,7 +12,7 @@ Steps:
 - Download and extract the zipped folder in the releases of this repository.
 - In the extracted folder, open the `quiz_me` folder.
 - Open the `.env` file in your text editor and add the line `VITE_OPENAI_API_KEY=[key]` (replace `[key]` with your API key).
-- Open the folder in your command prompt or terminal and enter ` npm run dev`.
+- Open the folder in your command prompt or terminal and enter `npm run dev`.
 - Ctrl+click on the localhost link to open the site in your browser.
 
 

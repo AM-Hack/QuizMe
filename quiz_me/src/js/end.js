@@ -48,6 +48,7 @@ saveHighScore = e => {
 
     localStorage.setItem('highScores', JSON.stringify(highScores))
     saveScoreBtn.disabled = true;
+    alert("Your score has been saved!")
 }
 
 

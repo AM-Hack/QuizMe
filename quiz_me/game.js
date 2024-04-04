@@ -118,7 +118,9 @@ let startGame = () => {
 
 let getNewQuestion = () => {
     if (availableQuestions.length === 0 || questionCounter > MAX_QUESTIONS) {
-        localStorage.setItem('mostRecentScore', score)
+        const MAX_SCORE = MAX_QUESTIONS * 100
+        let scorePercentage = Math.round((score/MAX_SCORE) * 100)
+        localStorage.setItem('mostRecentScore', scorePercentage)
 
         return window.location.assign('/src/html/end.html')
     }

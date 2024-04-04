@@ -26,9 +26,11 @@
     font-size: 62.5%;
     font-family: 'Quicksand', cursive;
     
-    
-    
-    
+}
+#highScoresList {
+    list-style: none;
+    margin-bottom: 4rem;
+    text-align: center;
 }
 .navigation {
     display:flex;
@@ -153,6 +155,11 @@ h2 {
 
 .hidden {
     display: none;
+}
+
+.high-score {
+    font-size: 25px;
+    color: white;
 }
 
 .btn {

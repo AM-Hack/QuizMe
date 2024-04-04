@@ -22,8 +22,8 @@ icon.onclick = function(){
     document.body.classList.toggle("dark-theme")
     document.body.classList.toggle("light-theme")
 
-    icon.innerText = (icon.innerText == "🌜")
-        ? "🌞"
-        : "🌜"
+    icon.innerText = (icon.innerText == "🌙")
+        ? "☀️"
+        : "🌙"
 
 }

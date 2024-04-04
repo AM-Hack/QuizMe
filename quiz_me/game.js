@@ -1,3 +1,20 @@
+var icon = document.getElementById("icon");
+if (icon.innerText == "🌙") {
+    document.body.classList.toggle("light-theme")
+}
+else {
+    document.body.classList.toggle("dark-theme")
+}
+icon.onclick = function(){
+    console.log("clicked")
+    document.body.classList.toggle("dark-theme")
+    document.body.classList.toggle("light-theme")
+
+    icon.innerText = (icon.innerText == "🌙")
+        ? "☀️"
+        : "🌙"
+
+}
 import { OpenAI } from 'openai'
 const openai = new OpenAI({apiKey: import.meta.env.VITE_OPENAI_API_KEY, dangerouslyAllowBrowser: true})
 
@@ -156,17 +173,3 @@ let incrementScore = num => {
 startGame()
 
 
-var icon = document.getElementById("icon");
-icon.onclick = function(){
-    console.log("clicked")
-    document.body.classList.toggle("dark-theme") /* change all color things here. find the dark theme part in style.css*/
-    if (document.body.classList.contains("dark-theme")){
-        icon.src = "/src/images/light-mode.png"
-    }
-    else {
-        document.body.classList.toggle("dark-theme")
-        document.body.classList.toggle("light-theme")
-        icon.src = "/src/images/night-mode.png"
-        
-    }
-}

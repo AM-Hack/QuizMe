@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Righteous&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Quicksand&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Noto+Color+Emoji&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Emoji&display=swap');
 
 :root .dark-theme{
     --first-color:#111111;
@@ -100,7 +101,7 @@ img {
 }
 
 .navigation .emoji {
-    font-family:"Noto Color Emoji";
+    font-family:"Noto Emoji";
     cursor:pointer;
     transition:transform .2s;
 }

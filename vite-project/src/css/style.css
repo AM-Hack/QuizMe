@@ -3,18 +3,18 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Color+Emoji&display=swap');
 
 :root .dark-theme{
-    --first-color:#002a2a;
-    --second-color:#000000;
+    --first-color:#111111;
+    --second-color:#317874;
     --third-color:#ffffff;
     --fourth-color:#ffffff;
     background-color: var(--first-color);
 }
 
 :root .light-theme {
-    --first-color:#45818e;
+    --first-color:#317874;
     --second-color:#ffffff;
     --third-color:#000000;
-    --fourth-color:#45818e;
+    --fourth-color:#317874;
     background-color: var(--first-color);
 }
 
@@ -45,13 +45,13 @@
 
 
 .navigation .logo{
-  float: left;
-  font-size:40px;
-  text-align:center;
-  text-decoration:none;
-  margin-right:auto;
-  font-weight:bold;
-  transition:transform .2s;
+    float: left;
+    font-size:40px;
+    text-align:center;
+    text-decoration:none;
+    margin-right:auto;
+    font-weight:bold;
+    transition:transform .2s;
 }
 .navigation .logo:hover {
     transform:scale(1.1);
@@ -71,21 +71,21 @@
     font-weight:bold;
 }
 .navigation .contabt{
-  font-family:"Quicksand";
-  float:right;
-  margin-top:auto;
-  margin-bottom:auto;
-  transition:transform .2s;
+    font-family:"Quicksand";
+    float:right;
+    margin-top:auto;
+    margin-bottom:auto;
+    transition:transform .2s;
 }
 .navigation .contabt:hover{
     transform:scale(1.1);
 }
 .navigation a {
-  float: right;
-  color:var(--third-color);
-  text-align: center;
-  text-decoration: none;
-  font-size: 17px;
+    float: right;
+    color:var(--third-color);
+    text-align: center;
+    text-decoration: none;
+    font-size: 17px;
 }
 
 img {
@@ -202,7 +202,6 @@ input {
     padding: 1.5rem;
     font-size: 1.8rem;
     border: none;
-    /*box-shadow: 0 0.1rem 1.4rem 0 rgba(86, 185, 235, 0.5);*/
 }
 
 input::placeholder {

@@ -183,6 +183,11 @@ choices.forEach((choice) => {
 
         if (classToApply === "correct") {
             incrementScore(SCORE_POINTS);
+            var correctSound = new Audio('/assets/audio/correct.mp3');
+            correctSound.play();
+        } else {
+            var incorrectSound = new Audio('/assets/audio/incorrect.mp3');
+            incorrectSound.play();
         }
 
         selectedChoice.parentElement.classList.add(classToApply);

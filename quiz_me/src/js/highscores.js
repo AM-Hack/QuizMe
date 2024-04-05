@@ -33,6 +33,7 @@ highScores.map(score => {
 }).join('')
 
 function clearLeaderboard() {
-    localStorage.clear()
+    localStorage.removeItem('mostRecentScore')
+    localStorage.removeItem('highScores')
     location.reload()
 }

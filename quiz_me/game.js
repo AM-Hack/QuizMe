@@ -1,20 +1,30 @@
+const currentColorMode = (JSON.stringify(localStorage.getItem('colorMode'))).substring(1, 2)
 var icon = document.getElementById("icon");
-if (icon.innerText == "🌙") {
-    document.body.classList.toggle("light-theme")
-}
-else {
-    document.body.classList.toggle("dark-theme")
-}
-icon.onclick = function(){
-    console.log("clicked")
-    document.body.classList.toggle("dark-theme")
-    document.body.classList.toggle("light-theme")
 
-    icon.innerText = (icon.innerText == "🌙")
-        ? "☀️"
-        : "🌙"
-
+if (currentColorMode == 'd') {
+    icon.innerText = '☀️'
+    document.body.classList.add('dark-theme')
+    document.body.classList.remove('light-theme')
+} else {
+    icon.innerText = '🌙'
+    document.body.classList.add("light-theme")
+    document.body.classList.remove('dark-theme')
 }
+
+icon.onclick = function() {
+    if (icon.innerText == '🌙') {
+        icon.innerText = '☀️'
+        localStorage.setItem('colorMode', 'd')
+        document.body.classList.add('dark-theme')
+        document.body.classList.remove('light-theme')
+    } else {
+        icon.innerText = '🌙'
+        localStorage.setItem('colorMode', 'l')
+        document.body.classList.add('light-theme')
+        document.body.classList.remove('dark-theme')
+    }
+}
+
 import { OpenAI } from 'openai'
 const openai = new OpenAI({apiKey: import.meta.env.VITE_OPENAI_API_KEY, dangerouslyAllowBrowser: true})
 

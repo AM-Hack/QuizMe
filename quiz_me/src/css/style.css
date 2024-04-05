@@ -1,21 +1,20 @@
-@import url('https://fonts.googleapis.com/css2?family=Righteous&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Quicksand&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Noto+Color+Emoji&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Noto+Emoji&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Righteous&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Quicksand&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Noto+Emoji&display=swap");
 
-:root .dark-theme{
-    --first-color:#111111;
-    --second-color:#317874;
-    --third-color:#ffffff;
-    --fourth-color:#ffffff;
+:root .dark-theme {
+    --first-color: #111111;
+    --second-color: #317874;
+    --third-color: #ffffff;
+    --fourth-color: #ffffff;
     background-color: var(--first-color);
 }
 
 :root .light-theme {
-    --first-color:#317874;
-    --second-color:#ffffff;
-    --third-color:#000000;
-    --fourth-color:#317874;
+    --first-color: #317874;
+    --second-color: #ffffff;
+    --third-color: #000000;
+    --fourth-color: #317874;
     background-color: var(--first-color);
 }
 
@@ -24,105 +23,109 @@
     margin: 0;
     padding: 0;
     font-size: 62.5%;
-    font-family: 'Quicksand', cursive;
-    
+    font-family: "Quicksand", cursive;
 }
+
 #highScoresList {
     list-style: none;
     margin-bottom: 4rem;
     text-align: center;
 }
+
 .navigation {
-    display:flex;
+    display: flex;
     align-items: center;
     overflow: hidden;
-    border-radius:35px;
-    transition: transform .2s;
-    margin:20px;
-    background-color:var(--second-color);
-    background-size:500px;
+    border-radius: 35px;
+    transition: transform 0.2s;
+    margin: 20px;
+    background-color: var(--second-color);
+    background-size: 500px;
     justify-content: space-between;
     padding: 30px 30px 30px 60px;
-    user-select:none;
-  }
+    user-select: none;
+}
 
-
-.navigation .logo{
+.navigation .logo {
     float: left;
-    font-size:40px;
-    text-align:center;
-    text-decoration:none;
-    margin-right:auto;
-    font-weight:bold;
-    transition:transform .2s;
+    font-size: 40px;
+    text-align: center;
+    text-decoration: none;
+    margin-right: auto;
+    font-weight: bold;
+    transition: transform 0.2s;
 }
+
 .navigation .logo:hover {
-    transform:scale(1.1);
+    transform: scale(1.1);
 }
-.navigation span.quiz{
-    color:var(--third-color);
-    font-size:30px;
-    font-family:"Righteous";
-    font-size:40px;
-    font-weight:bold;
+
+.navigation span.quiz {
+    color: var(--third-color);
+    font-size: 30px;
+    font-family: "Righteous";
+    font-size: 40px;
+    font-weight: bold;
 }
-.navigation span.me{
-    color:var(--first-color);
-    font-size:30px;
-    font-family:"Righteous";
-    font-size:40px;
-    font-weight:bold;
+
+.navigation span.me {
+    color: var(--first-color);
+    font-size: 30px;
+    font-family: "Righteous";
+    font-size: 40px;
+    font-weight: bold;
 }
-.navigation .contabt{
-    font-family:"Quicksand";
-    float:right;
-    margin-top:auto;
-    margin-bottom:auto;
-    transition:transform .2s;
+
+.navigation .contabt {
+    font-family: "Quicksand";
+    float: right;
+    margin-top: auto;
+    margin-bottom: auto;
+    transition: transform 0.2s;
 }
-.navigation .contabt:hover{
-    transform:scale(1.1);
+
+.navigation .contabt:hover {
+    transform: scale(1.1);
 }
+
 .navigation a {
     float: right;
-    color:var(--third-color);
+    color: var(--third-color);
     text-align: center;
     text-decoration: none;
     font-size: 17px;
 }
 
-img {
-    cursor: pointer;
-}
-
-
 .navigation .rightside {
     display: flex;
-    justify-content:space-between;
+    justify-content: space-between;
     gap: 25px;
 }
 
 .navigation .emoji {
-    font-family:"Noto Emoji";
-    cursor:pointer;
-    transition:transform .2s;
+    font-family: "Noto Emoji";
+    cursor: pointer;
+    transition: transform 0.2s;
 }
-.navigation .emoji:hover{
-    transform:scale(1.1);
+
+.navigation .emoji:hover {
+    transform: scale(1.1);
 }
-.navigation .emoji:active{
-    transform:rotate(90deg);
+
+.navigation .emoji:active {
+    transform: rotate(45deg);
 }
+
 h1 {
     font-size: 5.4rem;
-    font-weight:normal;
+    font-weight: normal;
     color: white;
     margin-bottom: 5rem;
 }
 
 h2 {
     font-size: 4.2rem;
-    font-weight:normal;
+    font-weight: normal;
     margin-bottom: 4rem;
 }
 
@@ -174,9 +177,8 @@ h2 {
     color: var(--fourth-color);
     background: var(--second-color);
     border-radius: 15px;
-    border:none;
-    transition: transform .2s;
-    
+    border: none;
+    transition: transform 0.2s;
 }
 
 .btn:hover {
@@ -191,11 +193,13 @@ h2 {
 }
 
 #highscore-btn {
-    background: linear-gradient(90deg, rgb(255,247,9) 0%, rgb(240, 221, 6) 100%);
+    background: linear-gradient(90deg,
+            rgb(255, 247, 9) 0%,
+            rgb(240, 221, 6) 100%);
 }
 
 #highscore-btn:hover {
-    box-shadow: 0 0.4rem 1.4rem 9 rgba(255, 255, 0,0.5);
+    box-shadow: 0 0.4rem 1.4rem 9 rgba(255, 255, 0, 0.5);
 }
 
 .end-form-container {
@@ -212,14 +216,16 @@ input {
     padding: 1.5rem;
     font-size: 1.8rem;
     outline: none;
-    border:none;
-    border-radius: 15px
+    border: none;
+    border-radius: 15px;
 }
 
 input::placeholder {
     color: #777;
 }
-#qnum, #topic {
+
+#qnum,
+#topic {
     margin-bottom: 3rem;
     width: 100%;
     outline: none;

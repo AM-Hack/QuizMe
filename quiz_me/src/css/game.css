@@ -1,63 +1,63 @@
-body {
-    color: #fff;
-}
 h1 {
-    font-size:2vw;
+    font-size: 2vw;
 }
+
+:root .dark-theme {
+    --box-color: #317874;
+    --text-color: #ffffff;
+    --bar-color: #317874;
+}
+
+:root .light-theme {
+    --box-color: #ffffff;
+    --text-color: #111111;
+    --bar-color: #111111;
+}
+
 .choice-container {
     display: flex;
     margin-bottom: 0.8rem;
     width: 100%;
     border-radius: 15px;
-    background: rgb(28, 26, 26);
+    background-color: var(--box-color);
     font-size: 3rem;
     min-width: 80rem;
-    transition:transform .2s;
+    transition: transform 0.2s;
 }
 
 .choice-container:hover {
     cursor: pointer;
-    /* box-shadow: 0 0.4rem 1.4rem 0 rgba(6,102,247,0.5); */
     transform: scale(1.02);
 }
 
 .choice-prefix {
+    color: var(--text-color);
     padding: 2rem 2.5rem;
-    color: white;
 }
 
-.choice-text{
+.choice-text {
+    color: var(--text-color);
     padding: 2rem;
     width: 100%;
 }
 
-.feedback {
-    opacity: 0;
-    transition: opacity 1s ease-in-out;
-    text-align: center;
-    color: green; /* Change color as desired */
-  }
-  
-  .feedback.correct { /* Add styling for correct answer */
-    opacity: 1;
-  }
-
-  .feedback.incorrect {
-    opacity: 1;
-  }
-
 .correct {
-    background: linear-gradient(32deg, rgba(11, 223, 36) 0%, rgba(41, 232, 111) 100%);
+    background: linear-gradient(32deg,
+            rgba(11, 223, 36) 0%,
+            rgba(41, 232, 111) 100%);
 }
 
 .incorrect {
-    background: linear-gradient(32deg, rgba(230, 29, 29, 1) 0%, rgba(224, 11, 11, 1) 100%);
+    background: linear-gradient(32deg,
+            rgba(230, 29, 29, 1) 0%,
+            rgba(224, 11, 11, 1) 100%);
 }
 
 #hud {
     display: flex;
     justify-content: space-between;
     margin-top: 100px;
+    color: #ffffff;
 }
 
 .hud-prefix {
@@ -72,7 +72,7 @@ h1 {
 #progressBar {
     width: 20rem;
     height: 3rem;
-    border: 0.2rem solid rgb(11, 223, 36);
+    border: 0.2rem solid white;
     margin-top: 2rem;
     border-radius: 50px;
     overflow: hidden;
@@ -80,7 +80,8 @@ h1 {
 
 #progressBarFull {
     height: 100%;
-    background: rgb(11, 223, 36);
+    /* background: rgb(11, 223, 36); */
+    background-color: var(--bar-color);
     width: 0%;
 }
 

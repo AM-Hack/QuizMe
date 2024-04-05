@@ -20,5 +20,5 @@ Steps:
 Add demo gif here
 
 ## Contact 👨‍💻
-Aadi's [email](mailto:aadibhat09@gmail.com) and [Discord](https://discordapp.com/users/779065933029310474)
+Aadi's [email](mailto:aadibhat09@gmail.com) and [Discord](https://discordapp.com/users/779065933029310474)<br>
 Mihir's [email](mailto:mihirnbapat@gmail.com) and [Discord](https://discordapp.com/users/693514463093063780)

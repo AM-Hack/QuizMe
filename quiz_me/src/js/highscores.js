@@ -22,3 +22,8 @@ highScoresList.innerHTML =
 highScores.map(score => {
     return `<li class="high-score">${score.name} - ${score.score + "%"}</li>`
 }).join('')
+
+function clearLeaderboard() {
+    localStorage.clear()
+    location.reload()
+}

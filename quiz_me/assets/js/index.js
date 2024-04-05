@@ -32,7 +32,11 @@ function SaveAndChange() {
 }
 
 topic.addEventListener("keyup", () => {
-    playButton.disabled = !topic.value || !num.value;
+    playButton.disabled = !(!!topic.value && !!num.value);
+});
+
+num.addEventListener("keyup", () => {
+    playButton.disabled = !(!!topic.value && !!num.value);
 });
 
 icon.onclick = function () {

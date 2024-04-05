@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>QuizMe | Home</title>
-    <link rel="stylesheet" href="src/css/style.css">
-    <link rel="icon" type="image/x-icon" href="Favicon.png">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="icon" type="image/x-icon" href="assets/images/Favicon.png">
 </head>
 
 <body>
@@ -25,9 +25,10 @@
             <input type="text" name="topic" id="topic" placeholder="Enter your topic">
             <input type="text" name="qnum" id="qnum" placeholder="Enter a number of questions">
             <button class="btn" id="playButton" type="submit" onclick="SaveAndChange()" disabled>Play</button>
+            <button class="btn" onclick="goToLeaderboard()">High Scores</button>
         </div>
     </div>
-    <script src="src/js/index.js"></script>
+    <script src="assets/js/index.js"></script>
 </body>
 
 </html>

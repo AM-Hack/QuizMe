@@ -40,14 +40,15 @@ async function generateQuestionAndAnswers(selectedTopic, pastGeneratedResponse, 
             {
                 role: 'user', // this is where the user's prompt goes
                 content: isFirstGeneratedResponse
-                    ? 'Ask me a very difficult quiz question (do not include any unnecessary words in response) about '
+                    ? 'Ask me very long quiz question (do not include any unnecessary words in response) about '
                         + selectedTopic
-                    : 'Ask me a very difficult quiz question (do not include any unnecessary words in response) about '
+                    : 'Ask me very long quiz question (do not include any unnecessary words in response) about '
                         + selectedTopic
                         + '. Please do not generate any questions that are in this list: '
                         + pastGeneratedResponse
             }
-        ]
+        ],
+        max_tokens: 30
     })
     const generatedQuestionContent = generatedQuestion.choices[0].message.content
 
@@ -64,7 +65,8 @@ async function generateQuestionAndAnswers(selectedTopic, pastGeneratedResponse, 
                     + generatedQuestionContent
                     + 'Respond in this form: @@[answer_1]@@[answer2]@@[answer_3]@@[answer_4]@@[correct_answer_number]. Make sure only one answer is correct. Do NOT add any punctuation or extra characters or numbers to the responses'
             }
-        ]
+        ],
+        max_tokens: 30
     })
     const generatedAnswersContent = generatedAnswers.choices[0].message.content
 

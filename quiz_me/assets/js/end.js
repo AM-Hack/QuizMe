@@ -30,6 +30,8 @@ const username = document.querySelector("#username");
 const saveScoreBtn = document.querySelector("#saveScoreBtn");
 const finalScore = document.querySelector("#finalScore");
 const mostRecentScore = localStorage.getItem("mostRecentScore");
+const urlParams = new URLSearchParams(window.location.search);
+const selectedTopic = urlParams.get("topic");
 
 const highScores = JSON.parse(localStorage.getItem("highScores")) || [];
 
@@ -46,7 +48,7 @@ saveHighScore = (e) => {
 
     const score = {
         score: mostRecentScore,
-        name: username.value,
+        name: username.value + " ("  + selectedTopic + ")",
     };
 
     highScores.push(score);

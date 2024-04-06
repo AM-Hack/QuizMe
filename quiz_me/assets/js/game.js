@@ -145,7 +145,7 @@ let getNewQuestion = () => {
         let scorePercentage = Math.round((score / MAX_SCORE) * 100);
         localStorage.setItem("mostRecentScore", scorePercentage);
 
-        return window.location.assign("end.html");
+        return window.location.assign(`/end.html?topic=${selectedTopic}`);
     }
 
     questionCounter++;

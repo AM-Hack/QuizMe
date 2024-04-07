@@ -3,7 +3,7 @@ QuizMe
 A multiple-choice quiz study tool webpage for students! Uses OpenAI API to generate questions based on a topic of the user's choice.
 
 ## Intro
-[Introduction to QuizMe] (https://docs.google.com/presentation/d/1DaupiFZ58PN0DLEnLjbAz0H3h4H9Oja3N7_ihedbZss/edit?usp=sharing)
+[Introduction to QuizMe](https://docs.google.com/presentation/d/1DaupiFZ58PN0DLEnLjbAz0H3h4H9Oja3N7_ihedbZss/edit?usp=sharing)
 
 
 ## How to use 🧑‍🎓

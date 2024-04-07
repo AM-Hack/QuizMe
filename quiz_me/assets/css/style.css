@@ -7,6 +7,8 @@
     --second-color: #317874;
     --third-color: #ffffff;
     --fourth-color: #ffffff;
+    --fifth-color: #317874;
+    --sixth-color: #ffffff;
     background-color: var(--first-color);
 }
 
@@ -15,6 +17,8 @@
     --second-color: #ffffff;
     --third-color: #000000;
     --fourth-color: #317874;
+    --fifth-color: #ffffff;
+    --sixth-color: #ffffff;
     background-color: var(--first-color);
 }
 
@@ -39,7 +43,6 @@
     border-radius: 35px;
     transition: transform 0.2s;
     margin: 20px;
-    background-color: var(--second-color);
     background-size: 500px;
     justify-content: space-between;
     padding: 30px 30px 30px 60px;
@@ -69,7 +72,7 @@
 }
 
 .navigation span.me {
-    color: var(--first-color);
+    color: var(--fifth-color);
     font-size: 30px;
     font-family: "Righteous";
     font-size: 40px;
@@ -90,7 +93,7 @@
 
 .navigation a {
     float: right;
-    color: var(--third-color);
+    color: var(--sixth-color);
     text-align: center;
     text-decoration: none;
     font-size: 17px;

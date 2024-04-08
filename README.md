@@ -21,7 +21,7 @@ Steps:
 
 
 ## Demo 💻
-Add demo gif here
+[YouTube Demo Link](https://www.youtube.com/watch?v=A1ZuH3fhx_g)
 
 ## Contact 👨‍💻
 Aadi's [email](mailto:aadibhat09@gmail.com) and [Discord](https://discordapp.com/users/779065933029310474)<br>

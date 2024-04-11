@@ -39,7 +39,20 @@
 
 .tagline {
     text-align: center;
-    padding: 60px;
+    padding-top: 20px;
+    padding-left: 60px;
+    padding-right: 60px;
+}
+.tagline span.emphasis {
+    background: linear-gradient(
+        90deg,
+        #317874,
+        #143230
+    );
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size:5.4rem;
+    font-weight:bold;
 }
 
 .navigation {

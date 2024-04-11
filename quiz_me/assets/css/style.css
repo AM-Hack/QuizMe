@@ -9,16 +9,20 @@
     --fourth-color: #ffffff;
     --fifth-color: #317874;
     --sixth-color: #ffffff;
+    --seventh-color: #317874;
+    --eighth-color: #143230;
     background-color: var(--first-color);
 }
 
 :root .light-theme {
     --first-color: #317874;
     --second-color: #ffffff;
-    --third-color: #000000;
+    --third-color: #111111;
     --fourth-color: #317874;
     --fifth-color: #ffffff;
     --sixth-color: #ffffff;
+    --seventh-color: #143230;
+    --eighth-color: #111111;
     background-color: var(--first-color);
 }
 
@@ -36,23 +40,19 @@
     text-align: center;
 }
 
-
 .tagline {
     text-align: center;
     padding-top: 20px;
     padding-left: 60px;
     padding-right: 60px;
 }
+
 .tagline span.emphasis {
-    background: linear-gradient(
-        90deg,
-        #317874,
-        #143230
-    );
+    background: linear-gradient(90deg, var(--seventh-color), var(--eighth-color));
     background-clip: text;
     -webkit-text-fill-color: transparent;
-    font-size:5.4rem;
-    font-weight:bold;
+    font-size: 5.4rem;
+    font-weight: bold;
 }
 
 .navigation {

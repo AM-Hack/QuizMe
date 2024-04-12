@@ -26,11 +26,6 @@
     background-color: var(--bg-color);
 }
 
-#design img {
-    position: absolute;
-    bottom:0px;
-    left:0px;
-}
 
 * {
     box-sizing: border-box;

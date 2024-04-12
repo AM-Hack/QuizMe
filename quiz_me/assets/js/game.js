@@ -24,7 +24,7 @@ async function generateQuestionAndAnswers(
                     selectedTopic
                     : "Ask me very long quiz question (do not include any unnecessary words in response) about " +
                     selectedTopic +
-                    ". Please do not generate any questions that are in this list: " +
+                    ". PLEASE DO NOT generate any questions that are in this list: " +
                     pastGeneratedResponse,
             },
         ],
@@ -37,14 +37,17 @@ async function generateQuestionAndAnswers(
             {
                 role: "system",
                 content:
-                    "You are a chatbot made for quizzing students on topics they ask you for. You respond in only one line",
+                    "You are a chatbot made for quizzing students on topics they ask you for. You respond in only one line.",
             },
             {
                 role: "user",
                 content:
                     "Generate four multiple choice answers for this question: " +
                     generatedQuestionContent +
-                    "Respond in this form: @@[answer_1]@@[answer2]@@[answer_3]@@[answer_4]@@[correct_answer_number]. Make sure only one answer is correct. Do NOT add any punctuation or extra characters or numbers to the responses",
+                    "Respond in this form: @@[answer_1]@@[answer2]@@[answer_3]@@[answer_4]@@[correct_answer_number] " +
+                    "(example: @@Penny@@Nickel@@Dime@@Quarter@@1). MAKE SURE ONLY ONE ANSWER IS CORRECT " +
+                    "(example of what NOT to do: What does HTML stand for? A. Hyper B. Text C. Markup D. Language). " +
+                    "Do NOT add any punctuation or extra characters or numbers to the responses.",
             },
         ],
     });

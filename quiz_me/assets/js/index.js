@@ -24,3 +24,11 @@ num.addEventListener("keyup", () => {
 function goToLeaderboard() {
     location.replace("highscores.html");
 }
+
+topic.addEventListener("input", () => {
+    if (topic.value.length > 0) {
+      num.style.opacity = 1;
+    } else {
+      num.style.opacity = 0;
+    }
+});

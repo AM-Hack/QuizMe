@@ -3,27 +3,27 @@
 @import url("https://fonts.googleapis.com/css2?family=Noto+Emoji&display=swap");
 
 :root .dark-theme {
-    --first-color: #111111;
-    --second-color: #317874;
-    --third-color: #ffffff;
-    --fourth-color: #ffffff;
-    --fifth-color: #317874;
-    --sixth-color: #ffffff;
-    --seventh-color: #317874;
-    --eighth-color: #143230;
-    background-color: var(--first-color);
+    --bg-color: #111111;
+    --button-text-color: #ffffff;
+    --nav-element-color: #ffffff;
+    --gradient-start-color: rgb(40, 124, 163);
+    --gradient-end-color: #317874;
+    --span-me-color: #ffffff;
+    --btn-color: rgb(44.5, 122, 139.5);
+    --hover-color: rgb(44.5, 122, 139.5);
+    background-color: var(--bg-color);
 }
 
 :root .light-theme {
-    --first-color: #317874;
-    --second-color: #ffffff;
-    --third-color: #111111;
-    --fourth-color: #317874;
-    --fifth-color: #ffffff;
-    --sixth-color: #ffffff;
-    --seventh-color: #143230;
-    --eighth-color: #111111;
-    background-color: var(--first-color);
+    --bg-color: rgb(44.5, 122, 139.5);
+    --button-text-color: rgb(44.5, 122, 139.5);
+    --nav-element-color: #ffffff;
+    --gradient-start-color: #111111;
+    --gradient-end-color: #111111;
+    --span-me-color: #ffffff;
+    --btn-color: #ffffff;
+    --hover-color: #111111;
+    background-color: var(--bg-color);
 }
 
 * {
@@ -42,11 +42,12 @@
 
 .tagline {
     margin-top: 5rem;
+    margin-bottom: 5rem;
     text-align: center;
 }
 
 .tagline span.emphasis {
-    background: linear-gradient(90deg, var(--seventh-color), var(--eighth-color));
+    background: linear-gradient(90deg, var(--gradient-start-color), var(--gradient-end-color));
     background-clip: text;
     -webkit-text-fill-color: transparent;
     font-size: 5.4rem;
@@ -81,15 +82,17 @@
 }
 
 .navigation span.quiz {
-    color: var(--third-color);
     font-size: 30px;
     font-family: "Righteous";
     font-size: 40px;
     font-weight: bold;
+    background: linear-gradient(90deg, var(--gradient-start-color), var(--gradient-end-color));
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 .navigation span.me {
-    color: var(--fifth-color);
+    color: var(--span-me-color);
     font-size: 30px;
     font-family: "Righteous";
     font-size: 40px;
@@ -106,11 +109,12 @@
 
 .navigation .contabt:hover {
     transform: scale(1.1);
+    color: var(--hover-color);
 }
 
 .navigation a {
     float: right;
-    color: var(--sixth-color);
+    color: var(--nav-element-color);
     text-align: center;
     text-decoration: none;
     font-size: 17px;
@@ -130,6 +134,7 @@
 
 .navigation .emoji:hover {
     transform: scale(1.1);
+    color: var(--hover-color);
 }
 
 .navigation .emoji:active {
@@ -204,8 +209,8 @@ h2 {
     text-align: center;
     margin-bottom: 1rem;
     text-decoration: none;
-    color: var(--fourth-color);
-    background: var(--second-color);
+    color: var(--button-text-color);
+    background: var(--btn-color);
     border-radius: 15px;
     border: none;
     transition: transform 0.2s;
@@ -272,4 +277,9 @@ input::placeholder {
 
 #saveScoreBtn {
     border: none;
+}
+
+#qnum {
+    opacity: 0;
+    transition: opacity 1.5s ease-in-out;
 }

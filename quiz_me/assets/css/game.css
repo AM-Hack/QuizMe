@@ -3,9 +3,9 @@ h1 {
 }
 
 :root .dark-theme {
-    --box-color: #317874;
+    --box-color: rgb(44.5, 122, 139.5);
     --text-color: #ffffff;
-    --bar-color: #317874;
+    --bar-color: rgb(44.5, 122, 139.5);
 }
 
 :root .light-theme {

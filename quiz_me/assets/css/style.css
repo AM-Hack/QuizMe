@@ -260,8 +260,9 @@ input::placeholder {
     color: #777;
 }
 
-#qnum,
+
 #topic,
+#qnum,
 #username {
     margin-bottom: 3rem;
     width: 100%;
@@ -280,7 +281,3 @@ input::placeholder {
     border: none;
 }
 
-#qnum {
-    opacity: 0;
-    transition: opacity 1.5s ease-in-out;
-}

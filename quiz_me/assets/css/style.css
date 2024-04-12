@@ -255,17 +255,13 @@ input::placeholder {
 }
 
 #qnum,
-#topic {
-    margin-bottom: 3rem;
-    width: 100%;
-    outline: none;
-    border-radius: 15px;
-}
-
+#topic,
 #username {
     margin-bottom: 3rem;
     width: 100%;
     outline: none;
+    border-radius: 15px;
+    user-select:none;
 }
 
 #end-text {

@@ -20,7 +20,7 @@ saveHighScore = (e) => {
 
     const score = {
         score: mostRecentScore,
-        name: username.value + " ("  + selectedTopic + ")",
+        name: username.value + " (" + selectedTopic + ")",
     };
 
     highScores.push(score);

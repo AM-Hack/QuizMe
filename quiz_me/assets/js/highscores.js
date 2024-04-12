@@ -13,7 +13,6 @@ function clearLeaderboard() {
     location.reload();
 }
 
-
 function goHome() {
-    location.replace('index.html')
+    location.replace("index.html");
 }

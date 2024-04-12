@@ -4,47 +4,53 @@ const openai = new OpenAI({
     dangerouslyAllowBrowser: true,
 });
 
-async function generateQuestionAndAnswers(selectedTopic, pastGeneratedResponse, isFirstGeneratedResponse) {
+async function generateQuestionAndAnswers(
+    selectedTopic,
+    pastGeneratedResponse,
+    isFirstGeneratedResponse
+) {
     const generatedQuestion = await openai.chat.completions.create({
         model: "gpt-3.5-turbo",
         messages: [
-        {
-            role: "system", // this is basically background info for HOW the AI should respond
-            content:
-            "You are a chatbot made for quizzing students on topics they ask you for. You respond in only one line",
-        },
-        {
-            role: "user", // this is where the user's prompt goes
-            content: isFirstGeneratedResponse
-            ? "Ask me very long quiz question (do not include any unnecessary words in response) about " +
-                selectedTopic
-            : "Ask me very long quiz question (do not include any unnecessary words in response) about " +
-                selectedTopic +
-                ". Please do not generate any questions that are in this list: " +
-                pastGeneratedResponse,
-        }]
+            {
+                role: "system", // this is basically background info for HOW the AI should respond
+                content:
+                    "You are a chatbot made for quizzing students on topics they ask you for. You respond in only one line",
+            },
+            {
+                role: "user", // this is where the user's prompt goes
+                content: isFirstGeneratedResponse
+                    ? "Ask me very long quiz question (do not include any unnecessary words in response) about " +
+                    selectedTopic
+                    : "Ask me very long quiz question (do not include any unnecessary words in response) about " +
+                    selectedTopic +
+                    ". Please do not generate any questions that are in this list: " +
+                    pastGeneratedResponse,
+            },
+        ],
     });
     const generatedQuestionContent = generatedQuestion.choices[0].message.content;
 
     const generatedAnswers = await openai.chat.completions.create({
         model: "gpt-3.5-turbo",
         messages: [
-        {
-            role: "system",
-            content:
-            "You are a chatbot made for quizzing students on topics they ask you for. You respond in only one line",
-        },
-        {
-            role: "user",
-            content:
-            "Generate four multiple choice answers for this question: " +
-            generatedQuestionContent +
-            "Respond in this form: @@[answer_1]@@[answer2]@@[answer_3]@@[answer_4]@@[correct_answer_number]. Make sure only one answer is correct. Do NOT add any punctuation or extra characters or numbers to the responses",
-        }]
-  });
-  const generatedAnswersContent = generatedAnswers.choices[0].message.content;
+            {
+                role: "system",
+                content:
+                    "You are a chatbot made for quizzing students on topics they ask you for. You respond in only one line",
+            },
+            {
+                role: "user",
+                content:
+                    "Generate four multiple choice answers for this question: " +
+                    generatedQuestionContent +
+                    "Respond in this form: @@[answer_1]@@[answer2]@@[answer_3]@@[answer_4]@@[correct_answer_number]. Make sure only one answer is correct. Do NOT add any punctuation or extra characters or numbers to the responses",
+            },
+        ],
+    });
+    const generatedAnswersContent = generatedAnswers.choices[0].message.content;
 
-  return generatedQuestionContent + generatedAnswersContent;
+    return generatedQuestionContent + generatedAnswersContent;
 }
 
 const urlParams = new URLSearchParams(window.location.search);
@@ -81,13 +87,13 @@ for (let questionNum = 0; questionNum < numberofQuestions - 1; questionNum++) {
     let pastGeneratedResponses = "";
     for (let index = 0; index < questions.length; index++) {
         pastGeneratedResponses +=
-        JSON.stringify(index + 1) + ". " + questions[index][0] + ", ";
+            JSON.stringify(index + 1) + ". " + questions[index][0] + ", ";
     }
     const newGeneratedResponse = (
         await generateQuestionAndAnswers(
-        selectedTopic,
-        pastGeneratedResponses,
-        false
+            selectedTopic,
+            pastGeneratedResponses,
+            false
         )
     ).split("@@");
     questions.push({
@@ -146,14 +152,14 @@ choices.forEach((choice) => {
         const selectedAnswer = selectedChoice.dataset["number"];
 
         let classToApply =
-        selectedAnswer == currentQuestion.answer ? "correct" : "incorrect";
+            selectedAnswer == currentQuestion.answer ? "correct" : "incorrect";
 
         if (classToApply === "correct") {
             incrementScore(SCORE_POINTS);
-            var correctSound = new Audio('/assets/audio/correct.mp3');
+            var correctSound = new Audio("/assets/audio/correct.mp3");
             correctSound.play();
         } else {
-            var incorrectSound = new Audio('/assets/audio/incorrect.mp3');
+            var incorrectSound = new Audio("/assets/audio/incorrect.mp3");
             incorrectSound.play();
         }
 

@@ -21,9 +21,6 @@ num.addEventListener("keyup", () => {
     playButton.disabled = !(!!topic.value && !!num.value);
 });
 
-
-
-
 function goToLeaderboard() {
-    location.replace('highscores.html')
+    location.replace("highscores.html");
 }
